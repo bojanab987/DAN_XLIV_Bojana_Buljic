@@ -31,5 +31,6 @@ namespace Zadatak_1.View
             InitializeComponent();
             this.DataContext = new MenuViewModel(this, JMBG);
         }
+        
     }
 }

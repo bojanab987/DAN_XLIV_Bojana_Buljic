@@ -13,14 +13,9 @@ namespace Zadatak_1.ViewModel
         /// Register each change on control/command binded for a Property
         /// </summary>
         /// <param name="propertyName">string parameter for a property name</param>
-        protected void OnPropertyChanged(string propertyName)
+        protected void OnPropertyChanged(string propertyName=null)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
-
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

@@ -18,6 +18,8 @@
                     Value="#545d6a" />
             <Setter Property="Width"
                     Value="60" />
+            <Setter Property="Height"
+                    Value="25" />
             <Setter Property="Foreground"
                     Value="White" />
         </Style>

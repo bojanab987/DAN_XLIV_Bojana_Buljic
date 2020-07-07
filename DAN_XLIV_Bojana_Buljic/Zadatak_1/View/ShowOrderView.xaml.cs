@@ -11,7 +11,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Zadatak_1.Pizza;
 using Zadatak_1.ViewModel;
 
 namespace Zadatak_1.View

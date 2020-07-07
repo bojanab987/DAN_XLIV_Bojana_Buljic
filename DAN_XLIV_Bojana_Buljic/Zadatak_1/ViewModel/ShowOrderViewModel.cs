@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Zadatak_1.Commands;
-using Zadatak_1.Pizza;
 using Zadatak_1.View;
 
 namespace Zadatak_1.ViewModel
