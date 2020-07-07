@@ -68,7 +68,8 @@ namespace Zadatak_1.ViewModel
                 }
                 else
                 {
-                    MessageBox.Show("Username or password not correct.");
+                    MessageBox.Show("Username or password not correct." +
+                        "Username must be valid JMBG.");
                 }
             }
             

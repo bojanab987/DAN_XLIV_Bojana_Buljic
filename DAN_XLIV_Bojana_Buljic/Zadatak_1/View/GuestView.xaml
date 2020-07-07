@@ -32,6 +32,9 @@
             <RowDefinition Height="20" />
             <RowDefinition Height="30" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="6" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="6" />
             <RowDefinition Height="30" />
             <RowDefinition Height="20" />
         </Grid.RowDefinitions>        
@@ -43,53 +46,68 @@
                     Width="90"/>
             <Button  VerticalAlignment="Center"                     
                      Command="{Binding LogOut}"
-                     Content="Logout" />
-            <Button  VerticalAlignment="Center"
-                     Command="{Binding BackCommand}"
-                     Content="Back" />
+                     Content="Logout" />           
         </StackPanel>
         <DataGrid Grid.Row="2" Grid.Column="1"
                   Name="DataGridMenu"
                   ItemsSource="{Binding MenuList, UpdateSourceTrigger=PropertyChanged}"
-                  SelectedItem="{Binding SelectedItem,UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding SelectedPizza,UpdateSourceTrigger=PropertyChanged}"
                   IsReadOnly="True"
                   HeadersVisibility="Column"
                   AutoGenerateColumns="False"
+                  Visibility="{Binding ViewMenu, UpdateSourceTrigger=PropertyChanged}"
                   HorizontalGridLinesBrush="Black"
                   BorderBrush="Black"
                   Foreground="Black"
                   FontWeight="Bold">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Pizza"
-                                    Binding="{Binding Menu.PizzaName}" />
+                                    Binding="{Binding PizzaName}" />
                 <DataGridTextColumn Header="Price"
-                                    Binding="{Binding Menu.Price}" />
-                <DataGridTemplateColumn>
+                                    Binding="{Binding Price}" />
+                <DataGridTemplateColumn Header="Amount">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBox Text="{Binding Menu.Amount}" />
+                            <TextBox Text="{Binding Path=Order.Amount,
+                                     RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}},
+                                     UpdateSourceTrigger=PropertyChanged}" Width="50"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <!--<DataGridTemplateColumn>
+                <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Width="80"
+                            <Button Width="100"
                                     Height="20"
-                                    Command="{Binding Path=DataContext.EditEmployee, RelativeSource= {RelativeSource FindAncestor,
+                                    Command="{Binding Path=DataContext.AddToOrder, RelativeSource= {RelativeSource FindAncestor,
                                        AncestorType={x:Type DataGrid}},UpdateSourceTrigger=PropertyChanged}"
-                                    Content="Edit" />
+                                    Content="Add to order" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>-->
-            </DataGrid.Columns>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>            
         </DataGrid>
-        <StackPanel Grid.Row="3" Grid.Column="1"
+        <Label Grid.Row="4"
+               Grid.Column="1"
+               Name="lblTotalPrice"
+               Content="Total Price:" 
+               VerticalAlignment="Center"
+               HorizontalAlignment="Left"
+               FontWeight="Bold"
+               Width="90"/>
+        <TextBlock Grid.Row="4"
+               Grid.Column="1"
+               Name="lblShowTotal"
+               Text="{Binding TotalPriceAmount}"
+               Margin="90 0 0 0"
+               VerticalAlignment="Center"
+               FontWeight="Black" />
+        <StackPanel Grid.Row="6" Grid.Column="1"
                     Orientation="Horizontal"
                     HorizontalAlignment="Center">
-            <Button Command="{Binding AddCommand}"
-                    Content="Add" />
-            <Button Command="{Binding CloseCommand}"
+            <Button Command="{Binding OrderCommand}"
+                    Content="Submit Order" Width="95"/>
+            <Button Command="{Binding Close}"
                     Content="Close" />
         </StackPanel>
     </Grid>
