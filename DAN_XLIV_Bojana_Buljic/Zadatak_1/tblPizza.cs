@@ -12,19 +12,19 @@ namespace Zadatak_1
     using System;
     using System.Collections.Generic;
     
-    public partial class tblMenu
+    public partial class tblPizza
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblMenu()
+        public tblPizza()
         {
-            this.tblOrders = new HashSet<tblOrder>();
+            this.tblOrderPizzas = new HashSet<tblOrderPizza>();
         }
     
-        public int ItemId { get; set; }
+        public int ID { get; set; }
         public string PizzaName { get; set; }
         public int Price { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblOrder> tblOrders { get; set; }
+        public virtual ICollection<tblOrderPizza> tblOrderPizzas { get; set; }
     }
 }

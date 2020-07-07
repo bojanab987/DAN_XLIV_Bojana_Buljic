@@ -25,8 +25,8 @@ namespace Zadatak_1
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<tblMenu> tblMenus { get; set; }
         public virtual DbSet<tblOrder> tblOrders { get; set; }
-        public virtual DbSet<vwOrder> vwOrders { get; set; }
+        public virtual DbSet<tblOrderPizza> tblOrderPizzas { get; set; }
+        public virtual DbSet<tblPizza> tblPizzas { get; set; }
     }
 }

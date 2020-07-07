@@ -4,11 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="71a880cc03e848a1b183afd610a1b6c5" Name="Diagram1">
-        <EntityTypeShape EntityType="PizzeriaDBModel.tblMenu" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="PizzeriaDBModel.tblOrder" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="PizzeriaDBModel.vwOrder" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <AssociationConnector Association="PizzeriaDBModel.FK__tblOrders__ItemI__398D8EEE" ManuallyRouted="false" />
+      <Diagram DiagramId="dfd74c8217e24018b69eae6d9ab8544f" Name="Diagram1">
+        <EntityTypeShape EntityType="PizzeriaDBModel.tblOrder" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzeriaDBModel.tblOrderPizza" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzeriaDBModel.tblPizza" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <AssociationConnector Association="PizzeriaDBModel.FK__tblOrderP__Order__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="PizzeriaDBModel.FK__tblOrderP__Pizza__3C69FB99" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

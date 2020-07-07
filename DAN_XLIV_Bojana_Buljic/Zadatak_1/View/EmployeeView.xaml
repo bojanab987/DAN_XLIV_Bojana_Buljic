@@ -6,7 +6,88 @@
         xmlns:local="clr-namespace:Zadatak_1.View"
         mc:Ignorable="d"
         Title="EmployeeView" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin"
+                    Value="0,0,10,0" />
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+            <Setter Property="Padding"
+                    Value="10,0,10,0" />
+            <Setter Property="Background"
+                    Value="#545d6a" />
+            <Setter Property="Width"
+                    Value="60" />
+            <Setter Property="Foreground"
+                    Value="White" />
+        </Style>
+    </Window.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0"
+                    Orientation="Horizontal">
+            <Label FontSize="18"
+                   Content="Menu: "
+                   VerticalAlignment="Center"
+                   Foreground="White" />
+        </StackPanel>
+        <StackPanel Grid.Row="0"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Left">
+            <Button  VerticalAlignment="Center"
+                     Command="{Binding LogOut}"
+                     Content="Logout" />
+            <Button  VerticalAlignment="Center"
+                     Command="{Binding Back}"
+                     Content="Back" />
+        </StackPanel>
+        <DataGrid Grid.Row="1"
+                  Name="DataGridResults"
+                  ItemsSource="{Binding OrderList, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding SelectedOrder,UpdateSourceTrigger=PropertyChanged}"
+                  IsReadOnly="True"
+                  HeadersVisibility="Column"
+                  AutoGenerateColumns="False"
+                  HorizontalGridLinesBrush="Black"
+                  BorderBrush="Black"
+                  Foreground="Black"
+                  FontWeight="Bold">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Pizza"
+                                    Binding="{Binding tblPizza.PizzaType}" />
+                <DataGridTextColumn Header="Price"
+                                    Binding="{Binding tblPizza.Price}" />
+                <DataGridTextColumn Header="JMBG"
+                                    Binding="{Binding tblOrder.JMBG}" />
+                <DataGridTextColumn Header="Date and time"
+                                    Binding="{Binding tblOrder.OrderDateTime}" />
+                <DataGridTextColumn Header="Status"
+                                    Binding="{Binding tblOrder.OrderStatus}" />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Width="100"
+                                    Height="20"
+                                    Command="{Binding Path=DataContext.AddToOrder, RelativeSource= {RelativeSource FindAncestor,
+                                       AncestorType={x:Type DataGrid}},UpdateSourceTrigger=PropertyChanged}"
+                                    Content="Details" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
         
+        <StackPanel Grid.Row="4"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+            <Button Command="{Binding Close}"
+                    Content="Close" />
+        </StackPanel>
     </Grid>
 </Window>

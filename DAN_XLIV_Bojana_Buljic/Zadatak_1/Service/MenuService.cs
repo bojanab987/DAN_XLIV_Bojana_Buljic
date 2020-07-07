@@ -12,14 +12,14 @@ namespace Zadatak_1.Service
         /// Method gets all pizzas from menu from database and returns list
         /// </summary>
         /// <returns>List of pizzas</returns>
-        public List<tblMenu> GetAllPizzas()
+        public List<tblPizza> GetAllPizzas()
         {
             try
             {
                 using (PizzeriaEntities context = new PizzeriaEntities())
                 {
-                    List<tblMenu> list = new List<tblMenu>();
-                    list = (from x in context.tblMenus select x).ToList();
+                    List<tblPizza> list = new List<tblPizza>();
+                    list = (from x in context.tblPizzas select x).ToList();
                     return list;
                 }
             }

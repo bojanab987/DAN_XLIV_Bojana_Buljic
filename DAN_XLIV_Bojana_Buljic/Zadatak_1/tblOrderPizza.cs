@@ -12,13 +12,14 @@ namespace Zadatak_1
     using System;
     using System.Collections.Generic;
     
-    public partial class vwOrder
+    public partial class tblOrderPizza
     {
-        public int OrderId { get; set; }
-        public string Username { get; set; }
-        public Nullable<int> ItemId { get; set; }
-        public int Amount { get; set; }
-        public System.DateTime OrderDateTime { get; set; }
-        public Nullable<int> TotalPrice { get; set; }
+        public int ID { get; set; }
+        public Nullable<int> Amount { get; set; }
+        public Nullable<int> OrderID { get; set; }
+        public Nullable<int> PizzaID { get; set; }
+    
+        public virtual tblOrder tblOrder { get; set; }
+        public virtual tblPizza tblPizza { get; set; }
     }
 }

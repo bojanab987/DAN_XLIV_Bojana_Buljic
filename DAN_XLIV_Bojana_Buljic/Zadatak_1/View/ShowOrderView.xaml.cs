@@ -11,19 +11,25 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Zadatak_1.Pizza;
 using Zadatak_1.ViewModel;
 
 namespace Zadatak_1.View
 {
     /// <summary>
-    /// Interaction logic for EmployeeView.xaml
+    /// Interaction logic for ShowOrderView.xaml
     /// </summary>
-    public partial class EmployeeView : Window
+    public partial class ShowOrderView : Window
     {
-        public EmployeeView()
+        public ShowOrderView()
+        {
+            InitializeComponent();            
+        }
+
+        public ShowOrderView(List<tblOrderPizza> pizzas, int totalPrice, string JMBG)
         {
             InitializeComponent();
-            this.DataContext = new EmployeeViewModel(this);
+            this.DataContext = new ShowOrderViewModel(this, pizzas, totalPrice, JMBG);
         }
     }
 }

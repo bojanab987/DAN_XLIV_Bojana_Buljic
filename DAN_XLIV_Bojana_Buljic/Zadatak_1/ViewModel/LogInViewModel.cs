@@ -39,7 +39,7 @@ namespace Zadatak_1.ViewModel
             {
                 if (login == null)
                 {
-                    login = new RelayCommand(LoginExecute,CanLoginExecute);
+                    login = new RelayCommand(LoginExecute, CanLoginExecute);
                 }
                 return login;
             }

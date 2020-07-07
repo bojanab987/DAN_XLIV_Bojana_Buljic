@@ -11,7 +11,12 @@ namespace Zadatak_1.View
         public GuestView()
         {
             InitializeComponent();
-            this.DataContext = new GuestViewModel(this);
+        }
+
+        public GuestView(string JMBG)
+        {
+            InitializeComponent();
+            this.DataContext = new GuestViewModel(this,JMBG);
         }
     }
 }

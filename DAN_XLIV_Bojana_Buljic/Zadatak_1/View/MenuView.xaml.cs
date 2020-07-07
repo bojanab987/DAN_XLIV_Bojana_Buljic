@@ -16,14 +16,20 @@ using Zadatak_1.ViewModel;
 namespace Zadatak_1.View
 {
     /// <summary>
-    /// Interaction logic for EmployeeView.xaml
+    /// Interaction logic for MenuView.xaml
     /// </summary>
-    public partial class EmployeeView : Window
+    public partial class MenuView : Window
     {
-        public EmployeeView()
+        public MenuView()
         {
             InitializeComponent();
-            this.DataContext = new EmployeeViewModel(this);
+            this.DataContext = new MenuViewModel(this);
+        }
+
+        public MenuView(string JMBG)
+        {
+            InitializeComponent();
+            this.DataContext = new MenuViewModel(this, JMBG);
         }
     }
 }

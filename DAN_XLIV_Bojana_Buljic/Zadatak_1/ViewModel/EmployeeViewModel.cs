@@ -14,30 +14,30 @@ namespace Zadatak_1.ViewModel
     class EmployeeViewModel:ViewModelBase
     {
         EmployeeView employeeView;
-        OrderService service;
+        OrderService orderService;
+        
 
         public EmployeeViewModel(EmployeeView viewOpen)
-        {
-            Order = new tblOrder();            
+        {                        
             employeeView = viewOpen;
-            service = new OrderService();
-            OrdersList = service.GetAllOrders();
+            orderService = new OrderService();
+            OrdersList = orderService.GetOrders();           
 
         }
 
-        private tblOrder order;
-        public tblOrder Order
-        {
-            get { return order; }
-            set
-            {
-                order = value;
-                OnPropertyChanged("Order");
-            }
-        }
+        //private tblOrder order;
+        //public tblOrder Order
+        //{
+        //    get { return order; }
+        //    set
+        //    {
+        //        order = value;
+        //        OnPropertyChanged("Order");
+        //    }
+        //}
 
-        private List<tblOrder> ordersList;
-        public List<tblOrder> OrdersList
+        private List<tblOrderPizza> ordersList;
+        public List<tblOrderPizza> OrdersList
         {
             get { return ordersList; }
             set
@@ -58,64 +58,65 @@ namespace Zadatak_1.ViewModel
             }
         }
 
-        private string status="On hold";
-        public string Status
-        {
-            get { return status; }
-            set
-            {
-                status = value;
-                OnPropertyChanged("Status");
-            }
-        }
+        //private string status="On hold";
+        //public string Status
+        //{
+        //    get { return status; }
+        //    set
+        //    {
+        //        status = value;
+        //        OnPropertyChanged("Status");
+        //    }
+        //}
 
-        private bool isChangedOrder;
-        public bool IsChangedOrder
-        {
-            get { return isChangedOrder; }
-            set
-            {
-                isChangedOrder = value;
-            }
-        }
+        //private bool isChangedOrder;
+        //public bool IsChangedOrder
+        //{
+        //    get { return isChangedOrder; }
+        //    set
+        //    {
+        //        isChangedOrder = value;
+        //    }
+
 
         #region Commands
 
-        private ICommand save;
-        public ICommand Save
-        {
-            get
-            {
-                if (save == null)
-                {
-                    save = new RelayCommand(param => SaveExecute(), param => CanSaveExecute());
-                }
-                return save;
-            }
-        }
+        //private ICommand save;
+        //public ICommand Save
+        //{
+        //    get
+        //    {
+        //        if (save == null)
+        //        {
+        //            save = new RelayCommand(param => SaveExecute(), param => CanSaveExecute());
+        //        }
+        //        return save;
+        //    }
+        //}
 
-        private void SaveExecute()
-        {
-            try
-            {
-                if(Status=="On hold")
-                {
-                    Order.OrderStatus = "On hold";
-                }
-                else if(Status=="Approved")
-                {
-                    Order.OrderStatus = "approved";
-                }
-                else
-                {
-                    Order.OrderStatus = "Denied";
-                }
-               
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
+        //private void SaveExecute()
+        //{
+        //    try
+        //    {
+        //        if(Status=="On hold")
+        //        {
+        //            Order.OrderStatus = "On hold";
+        //        }
+        //        else if(Status=="Approved")
+        //        {
+        //            Order.OrderStatus = "approved";
+        //        }
+        //        else
+        //        {
+        //            Order.OrderStatus = "Denied";
+        //        }
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.ToString());
+        //    }
+        //}
+        #endregion
     }
 }
