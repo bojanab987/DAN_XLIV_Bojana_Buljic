@@ -86,47 +86,7 @@ namespace Zadatak_1.ViewModel
         private bool CanLoginExecute(object o)
         {           
             return true;
-        }
-
-        /// <summary>
-        /// Clancel command - closes the view
-        /// </summary>
-        private ICommand cancel;
-        public ICommand Cancel
-        {
-            get
-            {
-                if (cancel == null)
-                {
-                    cancel = new RelayCommand(param => CancelExecute(), param => CanCancelExecute());
-                }
-                return cancel;
-            }
-        }
-
-        /// <summary>
-        /// Method for closing LogIn View
-        /// </summary>
-        private void CancelExecute()
-        {
-            try
-            {
-                logInView.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
-
-        /// <summary>
-        /// Method for check if close is possible to be Executed
-        /// </summary>
-        /// <returns>true </returns>
-        private bool CanCancelExecute()
-        {
-            return true;
-        }
+        }       
         #endregion
        
        

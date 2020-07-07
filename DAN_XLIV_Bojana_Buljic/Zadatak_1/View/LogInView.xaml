@@ -57,7 +57,8 @@
                     Margin="60 40"
                     Background="DarkSlateGray"
                     Foreground="White"
-                    FontSize="18" />
+                    FontSize="18" 
+                    HorizontalAlignment="Left"/>            
         </StackPanel>
     </Border>
 </Window>

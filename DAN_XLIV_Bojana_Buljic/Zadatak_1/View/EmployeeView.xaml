@@ -60,7 +60,7 @@
                   FontWeight="Bold">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Pizza"
-                                    Binding="{Binding tblPizza.PizzaType}" />
+                                    Binding="{Binding tblPizza.PizzaName}" />
                 <DataGridTextColumn Header="Price"
                                     Binding="{Binding tblPizza.Price}" />
                 <DataGridTextColumn Header="JMBG"
@@ -69,7 +69,7 @@
                                     Binding="{Binding tblOrder.OrderDateTime}" />
                 <DataGridTextColumn Header="Status"
                                     Binding="{Binding tblOrder.OrderStatus}" />
-                <DataGridTemplateColumn>
+                <!--<DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Width="100"
@@ -79,7 +79,7 @@
                                     Content="Details" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                </DataGridTemplateColumn>-->
             </DataGrid.Columns>
         </DataGrid>
         
