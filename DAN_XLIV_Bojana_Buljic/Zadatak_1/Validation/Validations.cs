@@ -5,19 +5,19 @@ namespace Zadatak_1.Validation
     /// <summary>
     /// Class for check validation of JMBG
     /// </summary>
-    class IsValidJMBG
+    class Validations
     {
         /// <summary>
         /// Method for validating JMBG number
         /// </summary>
         /// <param name="JMBG"></param>
         /// <returns>ture or false</returns>
-        public static bool JMBGisValid(string JMBG)
+        public static bool IsValidJMBG(string JMBG)
         {
             //check lenght of JMBG
             if (JMBG.Length != 13)
-                return false;            
-            
+                return false;
+
             //check if all characters in JMBG are number values
             for (int i = 0; i < JMBG.Length; i++)
             {
@@ -33,7 +33,7 @@ namespace Zadatak_1.Validation
                 year = 2000 + 10 * (int)Char.GetNumericValue(JMBG[5]) + (int)Char.GetNumericValue(JMBG[6]);
 
                 if (year > now.Year)
-                    return false;                
+                    return false;
 
             }
             else if (Char.GetNumericValue(JMBG[4]) == 9)
@@ -41,12 +41,12 @@ namespace Zadatak_1.Validation
                 year = 1900 + 10 * (int)Char.GetNumericValue(JMBG[5]) + (int)Char.GetNumericValue(JMBG[6]);
             }
             else
-                return false;            
+                return false;
 
             //check if month part of JMBG no is correct month
-            int month = (int)Char.GetNumericValue(JMBG[2]) * 10 + (int)Char.GetNumericValue(JMBG[3]);            
+            int month = (int)Char.GetNumericValue(JMBG[2]) * 10 + (int)Char.GetNumericValue(JMBG[3]);
             if (year == now.Year && month > now.Month)
-                return false;           
+                return false;
 
             if (month == 0 || month > 12)
                 return false;
