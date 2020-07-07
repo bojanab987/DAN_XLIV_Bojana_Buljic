@@ -5,8 +5,92 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Zadatak_1.View"
         mc:Ignorable="d"
-        Title="GuestView" Height="450" Width="800">
+        Title="GuestView" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin"
+                    Value="0,0,10,0" />
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+            <Setter Property="Padding"
+                    Value="10,0,10,0" />
+            <Setter Property="Background"
+                    Value="#545d6a" />
+            <Setter Property="Width"
+                    Value="60" />
+            <Setter Property="Foreground"
+                    Value="White" />
+        </Style>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="20" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>        
+        <StackPanel Grid.Row="1" Grid.Column="1"
+                    Orientation="Horizontal">            
+            <Button VerticalAlignment="Center"
+                    Command="{Binding ShowMenu}"
+                    Content="Show menu" 
+                    Width="90"/>
+            <Button  VerticalAlignment="Center"                     
+                     Command="{Binding LogOut}"
+                     Content="Logout" />
+            <Button  VerticalAlignment="Center"
+                     Command="{Binding BackCommand}"
+                     Content="Back" />
+        </StackPanel>
+        <DataGrid Grid.Row="2" Grid.Column="1"
+                  Name="DataGridMenu"
+                  ItemsSource="{Binding MenuList, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding SelectedItem,UpdateSourceTrigger=PropertyChanged}"
+                  IsReadOnly="True"
+                  HeadersVisibility="Column"
+                  AutoGenerateColumns="False"
+                  HorizontalGridLinesBrush="Black"
+                  BorderBrush="Black"
+                  Foreground="Black"
+                  FontWeight="Bold">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Pizza"
+                                    Binding="{Binding Menu.PizzaName}" />
+                <DataGridTextColumn Header="Price"
+                                    Binding="{Binding Menu.Price}" />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Menu.Amount}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <!--<DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Width="80"
+                                    Height="20"
+                                    Command="{Binding Path=DataContext.EditEmployee, RelativeSource= {RelativeSource FindAncestor,
+                                       AncestorType={x:Type DataGrid}},UpdateSourceTrigger=PropertyChanged}"
+                                    Content="Edit" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>-->
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Row="3" Grid.Column="1"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+            <Button Command="{Binding AddCommand}"
+                    Content="Add" />
+            <Button Command="{Binding CloseCommand}"
+                    Content="Close" />
+        </StackPanel>
     </Grid>
 </Window>

@@ -39,7 +39,7 @@ namespace Zadatak_1.ViewModel
             {
                 if (login == null)
                 {
-                    login = new RelayCommand(param => LoginExecute(), param => CanLoginExecute());
+                    login = new RelayCommand(LoginExecute,CanLoginExecute);
                 }
                 return login;
             }
@@ -57,16 +57,18 @@ namespace Zadatak_1.ViewModel
                 {
                     GuestView guest= new GuestView();
                     logInView.Close();
-                    guest.Show();
+                    guest.ShowDialog();
                     return;
                 }
                 else if(Username=="Zaposelni" && password=="Zaposleni")
-                {                    
-                    //EmployeeView
+                {
+                    EmployeeView employee = new EmployeeView();
+                    logInView.Close();
+                    employee.ShowDialog();
                 }
                 else
                 {
-                    MessageBox.Show("Username or password not correct");
+                    MessageBox.Show("Username or password not correct.");
                 }
             }
             
@@ -80,7 +82,7 @@ namespace Zadatak_1.ViewModel
         /// Method to confirm logIn command execution
         /// </summary>
         /// <returns></returns>
-        private bool CanLoginExecute()
+        private bool CanLoginExecute(object o)
         {           
             return true;
         }
@@ -108,7 +110,7 @@ namespace Zadatak_1.ViewModel
         {
             try
             {
-                logIn.Close();
+                logInView.Close();
             }
             catch (Exception ex)
             {
