@@ -21,23 +21,24 @@ namespace Zadatak_1.ViewModel
         {                        
             employeeView = viewOpen;
             orderService = new OrderService();
-            OrdersList = orderService.GetOrders();           
+            OrdersList = orderService.GetAllOrders();           
 
         }
 
-        //private tblOrder order;
-        //public tblOrder Order
-        //{
-        //    get { return order; }
-        //    set
-        //    {
-        //        order = value;
-        //        OnPropertyChanged("Order");
-        //    }
-        //}
+        #region properties
+        private tblOrder order;
+        public tblOrder Order
+        {
+            get { return order; }
+            set
+            {
+                order = value;
+                OnPropertyChanged("Order");
+            }
+        }
 
-        private List<tblOrderPizza> ordersList;
-        public List<tblOrderPizza> OrdersList
+        private List<tblOrder> ordersList;
+        public List<tblOrder> OrdersList
         {
             get { return ordersList; }
             set
@@ -58,65 +59,179 @@ namespace Zadatak_1.ViewModel
             }
         }
 
-        //private string status="On hold";
-        //public string Status
-        //{
-        //    get { return status; }
-        //    set
-        //    {
-        //        status = value;
-        //        OnPropertyChanged("Status");
-        //    }
-        //}
-
-        //private bool isChangedOrder;
-        //public bool IsChangedOrder
-        //{
-        //    get { return isChangedOrder; }
-        //    set
-        //    {
-        //        isChangedOrder = value;
-        //    }
-
+        private Visibility viewOrder = Visibility.Visible;
+        public Visibility ViewOrder
+        {
+            get
+            {
+                return viewOrder;
+            }
+            set
+            {
+                viewOrder = value;
+                OnPropertyChanged("ViewOrder");
+            }
+        }
+        #endregion
 
         #region Commands
 
-        //private ICommand save;
-        //public ICommand Save
-        //{
-        //    get
-        //    {
-        //        if (save == null)
-        //        {
-        //            save = new RelayCommand(param => SaveExecute(), param => CanSaveExecute());
-        //        }
-        //        return save;
-        //    }
-        //}
+        private ICommand deleteOrder;
+        /// <summary>
+        /// delete order command
+        /// </summary>
+        public ICommand DeleteOrder
+        {
+            get
+            {
+                if (deleteOrder == null)
+                {
+                    deleteOrder = new RelayCommand(param => DeleteOrderExecute(), param => CanDeleteOrderExecute());
+                }
+                return deleteOrder;
+            }
+        }
 
-        //private void SaveExecute()
-        //{
-        //    try
-        //    {
-        //        if(Status=="On hold")
-        //        {
-        //            Order.OrderStatus = "On hold";
-        //        }
-        //        else if(Status=="Approved")
-        //        {
-        //            Order.OrderStatus = "approved";
-        //        }
-        //        else
-        //        {
-        //            Order.OrderStatus = "Denied";
-        //        }
+        /// <summary>
+        /// delete order execute
+        /// </summary>
+        private void DeleteOrderExecute()
+        {
+            try
+            {
+                if (Order != null)
+                {
+                    int orderId = Order.ID;
+                    if (Order.OrderStatus == "pending")
+                    {
+                        orderService.DenyOrder(orderId);
+                        MessageBox.Show("Order denied");
+                    }
+                    else
+                    {
+                        orderService.DeleteOrder(orderId);
+                        MessageBox.Show("Order deleted");
+                    }
+                    using (PizzeriaEntities context = new PizzeriaEntities())
+                    {
+                        OrdersList = context.tblOrders.ToList();
+                    }
+                }
 
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.ToString());
-        //    }
-        //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Can delete order execute
+        /// </summary>
+        /// <returns>Can or cannot</returns>
+        private bool CanDeleteOrderExecute()
+        {
+            if (Order == null)
+                return false;
+            else
+                return true;
+        }
+
+        private ICommand approveOrder;
+        /// <summary>
+        /// approve order command
+        /// </summary>
+        public ICommand ApproveOrder
+        {
+            get
+            {
+                if (approveOrder == null)
+                {
+                    approveOrder = new RelayCommand(param => ApproveOrderExecute(), param => CanApproveOrderExecute());
+                }
+                return approveOrder;
+            }
+        }
+
+        /// <summary>
+        /// approve execute
+        /// </summary>
+        private void ApproveOrderExecute()
+        {
+            try
+            {
+                if (Order != null)
+                {
+                    int orderId = Order.ID;
+                    if (Order.OrderStatus == "pending")
+                    {
+                        orderService.ApproveOrder(orderId);
+                        MessageBox.Show("Order approved");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Order already approved");
+                    }
+                    using (PizzeriaEntities context = new PizzeriaEntities())
+                    {
+                        OrdersList = context.tblOrders.ToList();
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Can approve order execute
+        /// </summary>
+        /// <returns>Can or cannot</returns>
+        private bool CanApproveOrderExecute()
+        {
+            if (Order == null)
+                return false;
+            else
+                return true;
+        }
+
+
+        private ICommand logOut;
+        /// <summary>
+        /// logout command
+        /// </summary>
+        public ICommand LogOut
+        {
+            get
+            {
+                if (logOut == null)
+                {
+                    logOut = new RelayCommand(param => LogOutExecute(), param => CanLogOutExecute());
+                }
+                return logOut;
+            }
+        }
+
+        /// <summary>
+        /// logout execute
+        /// </summary>
+        private void LogOutExecute()
+        {
+            LogInView log = new LogInView();
+            log.Show();
+            employeeView.Close();
+        }
+
+        /// <summary>
+        /// Can logout execute
+        /// </summary>
+        /// <returns>Can or cannot</returns>
+        private bool CanLogOutExecute()
+        {
+            return true;
+        }
         #endregion
     }
 }

@@ -14,8 +14,7 @@ namespace Zadatak_1.ViewModel
     class MenuViewModel : ViewModelBase
     {
         MenuView menu;
-        MenuService mservice;
-        //OrderService oservice;
+        MenuService mservice;        
         /// <summary>
         /// Total order price
         /// </summary>

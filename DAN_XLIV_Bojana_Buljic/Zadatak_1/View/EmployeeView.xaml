@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Zadatak_1.View"
         mc:Ignorable="d"
-        Title="EmployeeView" Height="450" Width="800">
+        Title="EmployeeView" Width="500" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Margin"
@@ -22,7 +22,7 @@
                     Value="White" />
         </Style>
     </Window.Resources>
-    <Grid>
+    <!--<Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
             <RowDefinition Height="*" />
@@ -69,7 +69,7 @@
                                     Binding="{Binding tblOrder.OrderDateTime}" />
                 <DataGridTextColumn Header="Status"
                                     Binding="{Binding tblOrder.OrderStatus}" />
-                <!--<DataGridTemplateColumn>
+                --><!--<DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Width="100"
@@ -79,7 +79,7 @@
                                     Content="Details" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>-->
+                </DataGridTemplateColumn>--><!--
             </DataGrid.Columns>
         </DataGrid>
         
@@ -89,5 +89,88 @@
             <Button Command="{Binding Close}"
                     Content="Close" />
         </StackPanel>
+    </Grid>-->
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="6" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="20" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="6" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="6" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="6" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="6" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="6" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="6" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="1"
+              Grid.Row="1"
+              Height="auto"
+              Width="auto">
+            <DataGrid Name="DataGridResults"
+                      ItemsSource="{Binding OrderList, UpdateSourceTrigger=PropertyChanged}"
+                      SelectedItem="{Binding Order,UpdateSourceTrigger=PropertyChanged}"
+                      IsReadOnly="True"
+                      HeadersVisibility="Column"
+                      AutoGenerateColumns="False"
+                      Visibility="{Binding ViewOrder, UpdateSourceTrigger=PropertyChanged}"
+                      HorizontalGridLinesBrush="Black"
+                      BorderBrush="Black"
+                      Foreground="Black"
+                      FontWeight="Bold">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Order Date"
+                                        Binding="{Binding OrderDateTime}" />
+                    <DataGridTextColumn Header="Price"
+                                        Binding="{Binding TotalPrice}" />
+                    <DataGridTextColumn Header="Order Status"
+                                        Binding="{Binding OrderStatus}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <Button Content="✅"
+                Name="btnApprove"
+                Grid.Column="4"
+                HorizontalAlignment="Left"
+                Margin="13,0,-67,0"
+                Command="{Binding ApproveOrder, UpdateSourceTrigger=PropertyChanged}"
+                Grid.Row="2"
+                VerticalAlignment="Top"
+                Width="75"
+                RenderTransformOrigin="-1.48,-1.1"
+                Grid.RowSpan="4" />
+        <Button Content="✖"
+                Name="btnDelete"
+                Grid.Column="4"
+                HorizontalAlignment="Left"
+                Margin="13,3,-67,0"
+                Command="{Binding DeleteOrder, UpdateSourceTrigger=PropertyChanged}"
+                Grid.Row="5"
+                VerticalAlignment="Top"
+                Width="75"
+                Grid.RowSpan="2" />
+        <Button Content="Log out"
+                Name="btnLogOut"
+                Grid.Column="4"
+                IsEnabled="True"
+                HorizontalAlignment="Left"
+                Margin="13,2,-67,0"
+                Grid.Row="1"
+                Command="{Binding LogOut}"
+                VerticalAlignment="Top"
+                Width="75"
+                RenderTransformOrigin="-0.227,0.45" />
     </Grid>
 </Window>

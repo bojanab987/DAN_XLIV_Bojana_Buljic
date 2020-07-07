@@ -53,19 +53,19 @@ namespace Zadatak_1.ViewModel
             try
             {
                 string password = (o as PasswordBox).Password;
-                if (Validations.IsValidJMBG(Username) && password=="Gost")
-                {
-                    GuestView guest= new GuestView();
-                    logInView.Close();
-                    guest.ShowDialog();
-                    return;
-                }
-                else if(Username=="Zaposelni" && password=="Zaposleni")
+                if (Username == "Zaposleni" && password == "Zaposleni")
                 {
                     EmployeeView employee = new EmployeeView();
                     logInView.Close();
                     employee.ShowDialog();
                 }
+                else if (Validations.IsValidJMBG(Username) && password=="Gost")
+                {
+                    GuestView guest= new GuestView();
+                    logInView.Close();
+                    guest.ShowDialog();
+                    return;
+                }                
                 else
                 {
                     MessageBox.Show("Username or password not correct." +
