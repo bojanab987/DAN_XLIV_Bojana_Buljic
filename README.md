@@ -1,1 +1,1 @@
-# DAN_XLIV_Bojana_Buljic
+WPF application Pizzeria - pizza ordering simulation
